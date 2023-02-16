@@ -1,0 +1,42 @@
+<!-- document.getElementById('numberOfRooms').innerText = numberOfRooms; -->
+Displaying information:
+
+<!-- interpolation -->
+<p>Welcome to {{hotelName}}!</p>
+
+
+{{hotel.availableRooms ?? 'No rooms available'}}
+<!-- <div *ngIf="rooms?.availableRooms>0">Rooms:</div> -->
+
+<div *ngIf="hotel?.availableRooms">Hotel:</div>
+
+
+Number of Rooms:
+<div [hidden]="hideRooms">
+  <!-- box syntax -->
+  <div [innerText]="numberOfRooms"></div>
+</div>
+
+Room List:
+
+<!-- banana syntax -->
+<div>
+  <ul>
+    <ol *ngFor="let item of roomList; let e = even; let o = odd; let i = index;">
+      <div style="margin: 10px;">
+        <strong>{{i}}-{{item.roomType}}</strong>
+        <div>{{item.price}}</div>
+        <div>{{item.amenities}}</div>
+        <img src={{item.photos}} />
+        <div>{{item.checkinTime}}</div>
+        <div>{{item.checkoutTime}}</div>
+      </div>
+    </ol>
+  </ul>
+</div>
+
+
+Listening to events in Angular:
+<!-- banana syntax -->
+<button (click)="onButtonClick()">Click Me!</button>
+<button (click)="toggleRooms()">Toggle Rooms!</button>

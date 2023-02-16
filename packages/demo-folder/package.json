@@ -1,12 +1,13 @@
 {
-  "name": "demoFolder",
+  "name": "demo-folder",
   "version": "0.0.0",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc index.ts --outDir dist"
   },
   "dependencies": {
-    "freeCodeCampCourse": "*"
+    "free-code-camp-course": "*",
+    "hotel-inventory-app": "*"
   },
   "devDependencies": {
     "typescript": "^4.9.5"
