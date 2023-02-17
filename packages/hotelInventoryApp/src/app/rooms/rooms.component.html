@@ -2,8 +2,9 @@
 Displaying information:
 
 <!-- interpolation -->
-<p>Welcome to {{hotelName}}!</p>
+<!-- <p>Welcome to {{hotelName}}!</p> -->
 
+<app-header></app-header>
 
 {{hotel.availableRooms ?? 'No rooms available'}}
 <!-- <div *ngIf="rooms?.availableRooms>0">Rooms:</div> -->
@@ -12,29 +13,27 @@ Displaying information:
 
 
 Number of Rooms:
-<div [hidden]="hideRooms">
-  <!-- box syntax -->
-  <div [innerText]="numberOfRooms"></div>
+<!-- box syntax -->
+
+Room List: {{roomList | json}}
+
+
+<div><button (click)="addRoom()">Add room</button></div>
+
+<div *ngIf="!!selectedRoom">
+  <div>Selected Room: {{selectedRoom.roomType}}</div>
+  <div>Price: {{selectedRoom.price | currency: 'BRL'}}</div>
+  <div>Amenities: {{selectedRoom.amenities}}</div>
+  <div>Checkin Time: {{selectedRoom.checkinTime | date:'YYYY dd, MM'}}</div>
+  <div>Checkout Time: {{selectedRoom.checkoutTime | date : 'longDate'}}</div>
+  <div>Rating: {{selectedRoom.rating | number :'1.1-2' }}</div>
 </div>
 
-Room List:
-
-<!-- banana syntax -->
-<div>
-  <ul>
-    <ol *ngFor="let item of roomList; let e = even; let o = odd; let i = index;">
-      <div style="margin: 10px;">
-        <strong>{{i}}-{{item.roomType}}</strong>
-        <div>{{item.price}}</div>
-        <div>{{item.amenities}}</div>
-        <img src={{item.photos}} />
-        <div>{{item.checkinTime}}</div>
-        <div>{{item.checkoutTime}}</div>
-      </div>
-    </ol>
-  </ul>
+<div *ngIf="hideRooms">
+  <!-- gets the event from child component's action and pass as param in a function that comes from roomSelect 'props' -->
+  <app-rooms-list [roomList]="roomList" (roomSelect)="selectRoom($event)" [title]="title"></app-rooms-list>
+  <div [ngStyle]="{'background-color': hotel.availableRooms?'red':'green'}" [innerText]="numberOfRooms"></div>
 </div>
-
 
 Listening to events in Angular:
 <!-- banana syntax -->

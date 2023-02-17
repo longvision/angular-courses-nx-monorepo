@@ -1,0 +1,20 @@
+<p>rooms-list works!</p>
+<h1>{{title}}</h1>
+<div>
+  <table class="table">
+    <!-- even and odd below refers to the scss classess -->
+    <tr [ngClass]="e ? 'even': 'odd'" *ngFor="let item of roomList; let e = even; let o = odd; let i = index;">
+      <div style="margin: 10px;">
+        <strong>{{i | percent}}-{{item.roomType | uppercase}}</strong>
+        <td>{{item.price | currency: 'BRL'}}</td>
+        <td>{{item.amenities | lowercase}}</td>
+        <img src={{item.photos}} class="img" />
+        <td>{{item.checkinTime | date:'YYYY dd, MM'}}</td>
+        <td>{{item.checkoutTime | date : 'longDate'}}</td>
+        <td>{{item.rating | number :'1.1-2' }}</td>
+        <button class="btn btn-primary" (click)="selectRoom(item)">select</button>
+      </div>
+    </tr>
+  </table>
+
+</div>
